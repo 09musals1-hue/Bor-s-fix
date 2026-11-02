@@ -4,3 +4,7 @@ cd "  Borås Stad\Dokument\backend borås hjälp"
 
   and this one to run it 
 python -m uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+
+
+
+then paste ->  http://127.0.0.1:8000 into url in google 
