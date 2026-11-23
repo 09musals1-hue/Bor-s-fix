@@ -1,35 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#2563eb" />
-  <title>Quick Notes PWA</title>
-  <link rel="manifest" href="./manifest.json" />
-  <link rel="apple-touch-icon" href="./icon-192.png" />
-  <link rel="stylesheet" href="./styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#ffffff">
+  <title>App Wireframe</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <main class="app">
-    <header>
-      <h1>Quick Notes</h1>
-      <span id="status" class="badge online">Online</span>
+  <div class="app-shell">
+    <header class="top-bar">
+      <h1 id="page-title">Home</h1>
     </header>
 
-    <form id="note-form">
-      <input
-        type="text"
-        id="note-input"
-        placeholder="Write a note..."
-        autocomplete="off"
-        required
-      />
-      <button type="submit">Add</button>
-    </form>
+    <main class="content">
+      <!-- Page 1: Home -->
+      <section id="page-home" class="page active">
+        <div class="img-box hero">
+          <span>[Picture] Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+        </div>
+        <div class="card">
+          <div class="img-box">
+            <span>[Picture] Lorem ipsum dolor sit amet.</span>
+          </div>
+          <p>Lorem ipsum dolor sit amet, sed do eiusmod tempor incididunt.</p>
+        </div>
+        <div class="card">
+          <div class="img-box">
+            <span>[Picture] Lorem ipsum consectetur adipiscing.</span>
+          </div>
+          <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+        </div>
+      </section>
 
-    <ul id="note-list"></ul>
-  </main>
+      <!-- Page 2: Search -->
+      <section id="page-search" class="page">
+        <input type="text" class="wire-input" placeholder="Search wireframe...">
+        <div class="grid-2">
+          <div class="img-box square"><span>[Picture] Lorem ipsum dolor</span></div>
+          <div class="img-box square"><span>[Picture] Lorem ipsum amet</span></div>
+          <div class="img-box square"><span>[Picture] Lorem ipsum elit</span></div>
+          <div class="img-box square"><span>[Picture] Lorem ipsum tempor</span></div>
+        </div>
+      </section>
 
-  <script src="./app.js"></script>
+      <!-- Page 3: Create -->
+      <section id="page-create" class="page">
+        <div class="img-box hero">
+          <span>[Upload Picture] Lorem ipsum dolor sit amet, consectetur.</span>
+        </div>
+        <input type="text" class="wire-input" placeholder="Title placeholder">
+        <textarea class="wire-input" rows="4" placeholder="Description placeholder"></textarea>
+        <button type="button" class="wire-btn">Submit</button>
+      </section>
+
+      <!-- Page 4: Activity -->
+      <section id="page-activity" class="page">
+        <div class="list-item">
+          <div class="img-box thumb"><span>Lorem ipsum</span></div>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+        <div class="list-item">
+          <div class="img-box thumb"><span>Lorem ipsum</span></div>
+          <p>Sed do eiusmod tempor incididunt ut labore et dolore.</p>
+        </div>
+        <div class="list-item">
+          <div class="img-box thumb"><span>Lorem ipsum</span></div>
+          <p>Quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
+        </div>
+      </section>
+
+      <!-- Page 5: Profile -->
+      <section id="page-profile" class="page">
+        <div class="profile-header">
+          <div class="img-box avatar"><span>Lorem ipsum</span></div>
+          <div>
+            <h2>User Name</h2>
+            <p>Lorem ipsum dolor sit amet.</p>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="img-box square"><span>[Picture] Lorem ipsum 1</span></div>
+          <div class="img-box square"><span>[Picture] Lorem ipsum 2</span></div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Bottom 5-Feature Navigation -->
+    <nav class="bottom-nav" aria-label="Primary">
+      <button class="nav-btn active" data-target="page-home" data-title="Home">
+        <span class="icon">[1]</span>
+        <span>Home</span>
+      </button>
+      <button class="nav-btn" data-target="page-search" data-title="Search">
+        <span class="icon">[2]</span>
+        <span>Search</span>
+      </button>
+      <button class="nav-btn" data-target="page-create" data-title="Create">
+        <span class="icon">[3]</span>
+        <span>Create</span>
+      </button>
+      <button class="nav-btn" data-target="page-activity" data-title="Activity">
+        <span class="icon">[4]</span>
+        <span>Activity</span>
+      </button>
+      <button class="nav-btn" data-target="page-profile" data-title="Profile">
+        <span class="icon">[5]</span>
+        <span>Profile</span>
+      </button>
+    </nav>
+  </div>
+
+  <script src="app.js"></script>
 </body>
 </html>
