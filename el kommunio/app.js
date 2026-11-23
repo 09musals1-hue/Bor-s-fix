@@ -1,63 +1,32 @@
-// 1. Register the Service Worker
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker
-      .register("./sw.js")
-      .then(() => console.log("Service Worker registered"))
-      .catch((err) => console.error("Service Worker error:", err));
+document.addEventListener('DOMContentLoaded', () => {
+  const navButtons = document.querySelectorAll('.nav-btn');
+  const pages = document.querySelectorAll('.page');
+  const pageTitle = document.getElementById('page-title');
+
+  navButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.getAttribute('data-target');
+      const title = btn.getAttribute('data-title');
+
+      // Update active button
+      navButtons.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      // Switch visible page
+      pages.forEach((page) => {
+        page.classList.toggle('active', page.id === targetId);
+      });
+
+      // Update header title
+      pageTitle.textContent = title;
+      window.scrollTo(0, 0);
+    });
   });
-}
 
-// 2. App Logic (Notes saved locally in the browser)
-const form = document.getElementById("note-form");
-const input = document.getElementById("note-input");
-const list = document.getElementById("note-list");
-const statusBadge = document.getElementById("status");
-
-let notes = JSON.parse(localStorage.getItem("pwa-notes")) || [];
-
-function saveAndRender() {
-  localStorage.setItem("pwa-notes", JSON.stringify(notes));
-  list.innerHTML = "";
-
-  notes.forEach((note, index) => {
-    const li = document.createElement("li");
-    li.textContent = note;
-
-    const delBtn = document.createElement("button");
-    delBtn.textContent = "Delete";
-    delBtn.onclick = () => {
-      notes.splice(index, 1);
-      saveAndRender();
-    };
-
-    li.appendChild(delBtn);
-    list.appendChild(li);
-  });
-}
-
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const text = input.value.trim();
-  if (!text) return;
-  notes.push(text);
-  input.value = "";
-  saveAndRender();
-});
-
-// 3. Update Online/Offline indicator
-function updateStatus() {
-  if (navigator.onLine) {
-    statusBadge.textContent = "Online";
-    statusBadge.className = "badge online";
-  } else {
-    statusBadge.textContent = "Offline";
-    statusBadge.className = "badge offline";
+  // Register Service Worker for PWA support
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./sw.js').catch((err) => {
+      console.error('Service Worker registration failed:', err);
+    });
   }
-}
-
-window.addEventListener("online", updateStatus);
-window.addEventListener("offline", updateStatus);
-
-updateStatus();
-saveAndRender();
+});
