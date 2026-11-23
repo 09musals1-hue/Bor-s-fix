@@ -5,103 +5,184 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background-color: #f1f5f9;
-  color: #0f172a;
-  display: flex;
-  justify-content: center;
-  padding: 2rem 1rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  background-color: #efefef;
+  color: #222;
+  line-height: 1.4;
 }
 
-.app {
-  width: 100%;
-  max-width: 480px;
+/* Responsive shell: full-screen on phones, centered app frame on laptops */
+.app-shell {
+  max-width: 640px;
+  min-height: 100vh;
+  margin: 0 auto;
+  background-color: #ffffff;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+}
+
+.top-bar {
+  position: sticky;
+  top: 0;
   background: #ffffff;
-  padding: 1.5rem;
-  border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border-bottom: 2px solid #222;
+  padding: 14px 16px;
+  z-index: 10;
 }
 
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1.25rem;
+.top-bar h1 {
+  font-size: 1.1rem;
+  font-weight: 700;
 }
 
-h1 {
-  font-size: 1.4rem;
-}
-
-.badge {
-  font-size: 0.75rem;
-  font-weight: 600;
-  padding: 0.25rem 0.6rem;
-  border-radius: 999px;
-}
-
-.online {
-  background: #dcfce7;
-  color: #166534;
-}
-
-.offline {
-  background: #fee2e2;
-  color: #991b1b;
-}
-
-form {
-  display: flex;
-  gap: 0.5rem;
-  margin-bottom: 1.25rem;
-}
-
-input {
+.content {
   flex: 1;
-  padding: 0.7rem 0.9rem;
-  border: 1px solid #cbd5e1;
-  border-radius: 8px;
-  font-size: 1rem;
+  padding: 16px 16px 84px; /* Extra bottom padding so nav doesn't cover content */
 }
 
-button {
-  padding: 0.7rem 1.1rem;
-  background: #2563eb;
-  color: white;
+/* Page switching */
+.page {
+  display: none;
+}
+
+.page.active {
+  display: block;
+}
+
+/* Wireframe Picture Placeholders */
+.img-box {
+  background-color: #e4e4e4;
+  border: 2px dashed #777;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 12px;
+  font-size: 0.85rem;
+  margin-bottom: 12px;
+  min-height: 130px;
+}
+
+.img-box.hero {
+  min-height: 180px;
+}
+
+.img-box.square {
+  aspect-ratio: 1 / 1;
+  min-height: auto;
+  margin-bottom: 0;
+}
+
+.img-box.thumb {
+  width: 64px;
+  height: 64px;
+  min-height: auto;
+  flex-shrink: 0;
+  margin-bottom: 0;
+  font-size: 0.7rem;
+}
+
+.img-box.avatar {
+  width: 72px;
+  height: 72px;
+  min-height: auto;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-bottom: 0;
+  font-size: 0.7rem;
+}
+
+/* Basic Wireframe Components */
+.card {
+  border: 1px solid #bbb;
+  padding: 12px;
+  margin-bottom: 16px;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.list-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.wire-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border: 2px solid #444;
+  font: inherit;
+}
+
+.wire-btn {
+  width: 100%;
+  padding: 12px;
+  background: #222;
+  color: #fff;
   border: none;
-  border-radius: 8px;
+  font: inherit;
   font-weight: 600;
   cursor: pointer;
 }
 
-button:hover {
-  background: #1d4ed8;
+/* Fixed 5-Button Bottom Navigation */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 640px;
+  background: #ffffff;
+  border-top: 2px solid #222;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  padding-bottom: env(safe-area-inset-bottom);
+  z-index: 20;
 }
 
-ul {
-  list-style: none;
+.nav-btn {
+  background: none;
+  border: none;
+  border-right: 1px solid #ddd;
+  padding: 10px 4px;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-}
-
-li {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 0.75rem;
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
+  gap: 4px;
+  font-size: 0.75rem;
+  color: #555;
+  cursor: pointer;
 }
 
-li button {
-  background: transparent;
-  color: #ef4444;
-  padding: 0.25rem 0.5rem;
+.nav-btn:last-child {
+  border-right: none;
+}
+
+.nav-btn.active {
+  background-color: #222;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.nav-btn .icon {
+  font-family: monospace;
   font-size: 0.9rem;
-}
-
-li button:hover {
-  background: #fee2e2;
 }
