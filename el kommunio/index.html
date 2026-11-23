@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#2563eb" />
+  <title>Quick Notes PWA</title>
+  <link rel="manifest" href="./manifest.json" />
+  <link rel="apple-touch-icon" href="./icon-192.png" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <main class="app">
+    <header>
+      <h1>Quick Notes</h1>
+      <span id="status" class="badge online">Online</span>
+    </header>
+
+    <form id="note-form">
+      <input
+        type="text"
+        id="note-input"
+        placeholder="Write a note..."
+        autocomplete="off"
+        required
+      />
+      <button type="submit">Add</button>
+    </form>
+
+    <ul id="note-list"></ul>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>
